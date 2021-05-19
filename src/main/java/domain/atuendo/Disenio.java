@@ -1,6 +1,6 @@
 package domain.atuendo;
 
-public class Materiales {
+public class Disenio {
   private Trama trama = Trama.LISA;
   private Material material;
   private Color color;

@@ -1,7 +1,6 @@
 package domain.atuendo;
 
-class AlgunaVariableEsNullException extends Exception {
-}
+import Validaror.AlgunaVariableEsNullException;
 
 public class Borrador {
   private TipoPrenda tipo;
@@ -10,6 +9,7 @@ public class Borrador {
   private Color color;
   private Color colorSecundario;
   private Trama trama;
+  private Integer temperaturaMaxima;
 
   public Borrador setTipo(Tipo tipo) {
     this.tipo = tipo.getTipo();
@@ -18,24 +18,29 @@ public class Borrador {
   }
 
 
-  public Borrador setMaterial(Materiales tela) {
+  public Borrador setDisenio(Disenio disenio) {
 
-    this.material = tela.getterMaterial();
-    this.color = tela.getterColor();
-    this.colorSecundario = tela.getterColorSecundario();
+    this.material = disenio.getterMaterial();
+    this.color = disenio.getterColor();
+    this.colorSecundario = disenio.getterColorSecundario();
 
-    if( tela.getterTrama() == null ){
+    if( disenio.getterTrama() == null ){
       this.trama = Trama.LISA;
     } else {
-      this.trama = tela.getterTrama();
+      this.trama = disenio.getterTrama();
     }
+    return this;
+  }
+
+  public Borrador setTemperatura(Integer temperaturaMaxima){
+    this.temperaturaMaxima = temperaturaMaxima;
     return this;
   }
 
 
   public Prenda build() throws AlgunaVariableEsNullException {
     if(this.esPrendaValida()){
-      if(colorSecundario == null) { return new Prenda(tipo, categoria, material, color, trama); } else { return new Prenda(tipo, categoria, material, color, colorSecundario, trama); }
+      if(colorSecundario == null) { return new Prenda(tipo, categoria, material, color, trama); } else { return new Prenda(tipo, categoria, material, color, colorSecundario, trama, temperaturaMaxima); }
       } else { throw new AlgunaVariableEsNullException();}
     }
 
