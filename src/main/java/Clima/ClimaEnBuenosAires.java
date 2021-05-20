@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class ClimaEnBuenosAires {
 
-  public Integer condicionesBuenosAiresAhora(){
+  public Integer temperaturaAhora(){
     Map<String, Object> climaActual = new AccuWeatherAPI().getWeather("Buenos Aires, Argentina").get(0);
     HashMap<String, Object> temp = (HashMap<String, Object>) climaActual.get("Temperature");
     return (int) temp.get("Value");

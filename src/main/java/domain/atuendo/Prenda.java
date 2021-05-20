@@ -36,6 +36,7 @@ public class Prenda {
     }
 
     public boolean usableAhora() {
-        return temperaturaMaxima < ClimaEnBuenosAires.
+        int temperaturaAhora = new ClimaEnBuenosAires().temperaturaAhora();
+        return temperaturaMaxima < temperaturaAhora;
     }
 }
