@@ -4,14 +4,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Vestidor {
-  private static RepositorioPrendas repositorio = RepositorioPrendas.getInstance();;
+  private static GuardaRopas guardaRopas;
+
+  public Vestidor(GuardaRopas guardaRopas){
+    this.guardaRopas = guardaRopas;
+  }
 
 
   public static Atuendo generarAtuendoAptoTemperatura(){
-    Prenda prendaSuperiorApta = prendaAleatoreaApta(repositorio.getPrendasSuperiores());
-    Prenda prendaInferiorApto = prendaAleatoreaApta(repositorio.getPrendasInferiores());
-    Prenda prendaCalzadoApto = prendaAleatoreaApta(repositorio.getPrendasCalzados());
-    Prenda prendaAccesoriosApta = prendaAleatoreaApta(repositorio.getPrendasAccesorios());
+    Prenda prendaSuperiorApta = prendaAleatoreaAptaAlClima(guardaRopas.getPrendasSuperiores());
+    Prenda prendaInferiorApto = prendaAleatoreaAptaAlClima(guardaRopas.getPrendasInferiores());
+    Prenda prendaCalzadoApto = prendaAleatoreaAptaAlClima(guardaRopas.getPrendasCalzados());
+    Prenda prendaAccesoriosApta = prendaAleatoreaAptaAlClima(guardaRopas.getPrendasAccesorios());
 
     Atuendo atuendo= new Atuendo();
     atuendo.cargarPrenda(prendaSuperiorApta,prendaAccesoriosApta,prendaInferiorApto,prendaCalzadoApto);
@@ -19,7 +23,9 @@ public class Vestidor {
   }
 
 
-  public static Prenda prendaAleatoreaApta(List<Prenda> lista){
+  public static Prenda prendaAleatoreaAptaAlClima(List<Prenda> lista){
     return lista.stream().filter(prenda -> prenda.usableAhora()).collect(Collectors.toList()).get((int) Math.floor(Math.random()*(lista.size()+1)));
   }
+
+
 }
