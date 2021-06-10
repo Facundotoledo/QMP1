@@ -1,5 +1,5 @@
 package domain.atuendo;
 
-public enum CriterioVestidor {
+ public enum CriterioVestidor {
   VIAJE, ENTRECASA, TRABAJO, CASUAL
 }

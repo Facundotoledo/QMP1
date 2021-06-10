@@ -10,14 +10,16 @@ public class GuardaRopas {
   private static List<Prenda> prendasSugeridasParaQuitar;
   private static List<Prenda> prendasQuitadas;
   private static List<Prenda> prendasAgregadas;
+  private static Vestidor vestidor;
 
   private static List<Prenda> prendasSuperiores = Arrays.asList();
   private static List<Prenda> prendasInferiores = Arrays.asList();
   private static List<Prenda> prendasAccesorios = Arrays.asList();
   private static List<Prenda> prendasCalzados = Arrays.asList();
 
-  public GuardaRopas(CriterioVestidor criterioVestidor){
+  public GuardaRopas(CriterioVestidor criterioVestidor, List<Prenda> prendas){
     this.criterioVestidor = criterioVestidor;
+    prendas.stream().forEach(prenda -> agregarPrenda(prenda));
   }
 
   public static void agregarPrenda(Prenda prenda) {
@@ -94,5 +96,9 @@ public class GuardaRopas {
   public static void deshacerPrendasAgregadas(){
     prendasAgregadas.forEach(prenda -> quitarPrenda(prenda));
     prendasAgregadas.clear();
+  }
+
+  public static void setVestidor(Vestidor vestidor) {
+    GuardaRopas.vestidor = vestidor;
   }
 }

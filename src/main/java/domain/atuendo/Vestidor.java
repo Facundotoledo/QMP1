@@ -8,6 +8,7 @@ public class Vestidor {
 
   public Vestidor(GuardaRopas guardaRopas){
     this.guardaRopas = guardaRopas;
+    guardaRopas.setVestidor(this);
   }
 
 
@@ -27,5 +28,6 @@ public class Vestidor {
     return lista.stream().filter(prenda -> prenda.usableAhora()).collect(Collectors.toList()).get((int) Math.floor(Math.random()*(lista.size()+1)));
   }
 
-
 }
+
+
